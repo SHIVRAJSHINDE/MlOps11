@@ -122,6 +122,9 @@ celerybeat.pid
 # Environments
 .env
 .venv
+envMlOpsWine
+envMlOpsWine/
+.envMlOpsWine
 env/
 venv/
 ENV/

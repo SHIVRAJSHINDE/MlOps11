@@ -1,0 +1,12 @@
+creation_timestamp: 1713514706773
+current_stage: None
+description: ''
+last_updated_timestamp: 1713514706773
+name: ElasticnetWineModel
+run_id: 6da1072e5fc34ff8bb0440413b0d307b
+run_link: ''
+source: mlflow-artifacts:/0/6da1072e5fc34ff8bb0440413b0d307b/artifacts/model
+status: READY
+status_message: null
+user_id: null
+version: 1
