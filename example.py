@@ -14,7 +14,7 @@ from sklearn.linear_model import ElasticNet
 from urllib.parse import urlparse
 import mlflow
 import mlflow.sklearn
-app = Flask(__name__)
+
 
 import logging
 
@@ -54,8 +54,10 @@ if __name__ == "__main__":
     train_y = train[["Qwality"]]
     test_y = test[["Qwality"]]
 
-    alpha = float(sys.argv[1]) if len(sys.argv) > 1 else 0.5
-    l1_ratio = float(sys.argv[2]) if len(sys.argv) > 2 else 0.5
+
+
+    alpha = float(sys.argv[1]) if len(sys.argv) > 1 else 0.7
+    l1_ratio = float(sys.argv[2]) if len(sys.argv) > 2 else 0.9
     print("alpha")
 
     with mlflow.start_run():
@@ -81,6 +83,8 @@ if __name__ == "__main__":
         mlflow.log_metric("r2", r2)
         mlflow.log_metric("mae", mae)
 
+        remote_server_uri ="https://dagshub.com/SHIVRAJSHINDE/MlOps11.mlflow"
+        mlflow.set_tracking_uri(remote_server_uri)
         tracking_url_type_store = urlparse(mlflow.get_tracking_uri()).scheme
 
         # Model registry does not work with file store
