@@ -1,7 +1,10 @@
+
 # The data set used in this example is from http://archive.ics.uci.edu/ml/datasets/Wine+Quality
 # P. Cortez, A. Cerdeira, F. Almeida, T. Matos and J. Reis.
 # Modeling wine preferences by data mining from physicochemical properties. In Decision Support Systems, Elsevier, 47(4):547-553, 2009.
 # env envMlOpsWine
+
+
 import os
 import warnings
 import sys
@@ -79,12 +82,17 @@ if __name__ == "__main__":
 
         mlflow.log_param("alpha", alpha)
         mlflow.log_param("l1_ratio", l1_ratio)
+
         mlflow.log_metric("rmse", rmse)
         mlflow.log_metric("r2", r2)
         mlflow.log_metric("mae", mae)
 
-        remote_server_uri ="https://dagshub.com/SHIVRAJSHINDE/MlOps11.mlflow"
+        # remote_server_uri ="https://dagshub.com/SHIVRAJSHINDE/MlOps11.mlflow"
+        # mlflow.set_tracking_uri(remote_server_uri)
+        
+        remote_server_uri ="http://ec2-100-25-26-55.compute-1.amazonaws.com:5000/"
         mlflow.set_tracking_uri(remote_server_uri)
+        
         tracking_url_type_store = urlparse(mlflow.get_tracking_uri()).scheme
 
         # Model registry does not work with file store
@@ -96,3 +104,6 @@ if __name__ == "__main__":
             mlflow.sklearn.log_model(lr, "model", registered_model_name="ElasticnetWineModel")
         else:
             mlflow.sklearn.log_model(lr, "model")
+            
+            
+            
